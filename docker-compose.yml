@@ -1,12 +1,12 @@
 version: "3.8"
 
 services:
-  redis:
+  cache:
     image: redis
     ports:
       - "6379:6379"
     volumes:
-      - rickymorty-node-redis-cache:/var/lib/postgresql/data
-
+      - cache:/data
 volumes:
-  rickymorty-node-redis-cache: null
+  cache:
+    driver: local
