@@ -16,7 +16,9 @@ app.get("/characters", async (req, res) => {
 
   const { data } = await axios.get("https://rickandmortyapi.com/api/character");
 
-  const savedResult = await client.set("characters", JSON.stringify(data));
+  const savedResult = await client.set("characters", JSON.stringify(data), {
+    EX: 60 * 60, // 1 hour to expire
+  });
   console.log(savedResult);
 
   return res.json(data);
